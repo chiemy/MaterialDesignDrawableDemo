@@ -1,23 +1,22 @@
 package com.chiemy.materialdesigndrawable;
 
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.graphics.Palette;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import java.lang.ref.WeakReference;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
+    private static final String[] datas = {"Tint drawable", "Vector drawable", "Palette"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,54 +25,83 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ListAdapter adapter = new ListAdapter(this);
+        adapter.setOnItemClickListener(new ListAdapter.MyItemClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onItemClick(View view, int position) {
+
+                switch (position){
+                    case 0:
+                        Intent intent0 = new Intent(MainActivity.this, TintDrawableActivity.class);
+                        startActivity(intent0);
+                        break;
+                    case 1:
+                        Intent intent1 = new Intent(MainActivity.this, VectorDrawableActivity.class);
+                        startActivity(intent1);
+                        break;
+                    case 2:
+                        Intent intent2 = new Intent(MainActivity.this, PaletteActivity.class);
+                        startActivity(intent2);
+                        break;
+                    default:
+                        break;
+                }
             }
         });
-
-        final MyHandler handler = new MyHandler(this);
-        final BitmapDrawable bitmapDrawable = (BitmapDrawable) getDrawable(R.mipmap.ic_launcher);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Palette palette = Palette.from(bitmapDrawable.getBitmap()).generate();
-                Message msg = handler.obtainMessage();
-                Bundle bundle = new Bundle();
-                bundle.putInt("vibrantColor", palette.getVibrantColor(Color.BLACK));
-                bundle.putInt("vibrantDrakColor", palette.getDarkVibrantColor(Color.BLACK));
-                bundle.putInt("vibrantLightColor", palette.getLightVibrantColor(Color.BLACK));
-                bundle.putInt("mutedColor", palette.getMutedColor(Color.BLACK));
-                bundle.putInt("mutedLightColor", palette.getLightMutedColor(Color.BLACK));
-                bundle.putInt("mutedDrakColor", palette.getDarkMutedColor(Color.BLACK));
-                msg.obj = bundle;
-                handler.sendMessage(msg);
-            }
-        }).start();
+        recyclerView.setAdapter(adapter);
     }
 
-    private static class MyHandler extends Handler{
-        private WeakReference<MainActivity> ref;
-        public MyHandler(MainActivity act){
-            ref = new WeakReference<>(act);
+    private static class ListAdapter extends RecyclerView.Adapter<CustomViewHolder> {
+        private LayoutInflater inflater;
+
+        public ListAdapter(Context context) {
+            inflater = LayoutInflater.from(context);
         }
 
         @Override
-        public void handleMessage(Message msg) {
-            MainActivity act = ref.get();
-            if (act != null){
-                Bundle bundle = (Bundle) msg.obj;
-                act.findViewById(R.id.tv_vibrant).setBackgroundColor(bundle.getInt("vibrantColor"));
-                act.findViewById(R.id.tv_vibrant_light).setBackgroundColor(bundle.getInt("vibrantLightColor"));
-                act.findViewById(R.id.tv_vibrant_dark).setBackgroundColor(bundle.getInt("vibrantDrakColor"));
-                act.findViewById(R.id.tv_muted).setBackgroundColor(bundle.getInt("mutedColor"));
-                act.findViewById(R.id.tv_muted_light).setBackgroundColor(bundle.getInt("mutedLightColor"));
-                act.findViewById(R.id.tv_muted_dark).setBackgroundColor(bundle.getInt("mutedDrakColor"));
-            }
+        public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return new CustomViewHolder(inflater.inflate(R.layout.item_main_list, parent, false), myItemClickListener);
         }
+
+        @Override
+        public void onBindViewHolder(CustomViewHolder holder, int position) {
+            holder.itemView.setTag(position);
+            holder.tv.setText(datas[position]);
+        }
+
+        @Override
+        public int getItemCount() {
+            return datas.length;
+        }
+
+        private MyItemClickListener myItemClickListener;
+        public void setOnItemClickListener(MyItemClickListener listener){
+            myItemClickListener = listener;
+        }
+
+        public interface MyItemClickListener{
+            void onItemClick(View view, int position);
+        }
+    }
+
+    private static class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        private TextView tv;
+
+        private ListAdapter.MyItemClickListener myItemClickListener;
+        public CustomViewHolder(View itemView,  ListAdapter.MyItemClickListener listener) {
+            super(itemView);
+            myItemClickListener = listener;
+            itemView.setOnClickListener(this);
+            tv = (TextView) itemView.findViewById(R.id.tv_text);
+        }
+
+        @Override
+        public void onClick(View view) {
+            myItemClickListener.onItemClick(view, getAdapterPosition());
+        }
+
     }
 
     @Override

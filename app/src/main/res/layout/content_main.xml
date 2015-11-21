@@ -12,94 +12,10 @@
     tools:context=".MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
-        android:id="@+id/tv_vector"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/heart"
-        android:text="This is a vector drawable"
-        android:gravity="center_vertical"
-        />
-
-    <TextView
-        android:id="@+id/tv_des1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Extract Prominent Colors from an Image with Palette class."
-        android:layout_below="@+id/tv_vector"
-        android:layout_marginTop="10dp"
-        android:textSize="16sp"
-        />
-
-    <TextView
-        android:id="@+id/tv_des2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Extract Prominent Colors from "
-        android:layout_below="@+id/tv_des1"
-        android:layout_marginTop="10dp"
-        android:drawableRight="@mipmap/ic_launcher"
-        android:gravity="center_vertical"
-        />
-
-    <TextView
-        android:id="@+id/tv_vibrant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vibrant color"
-        android:layout_below="@+id/tv_des2"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        />
-
-    <TextView
-        android:id="@+id/tv_vibrant_dark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vibrant dark color"
-        android:layout_below="@+id/tv_vibrant"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        />
-
-    <TextView
-        android:id="@+id/tv_vibrant_light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Vibrant light color"
-        android:layout_below="@+id/tv_vibrant_dark"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        />
-
-    <TextView
-        android:id="@+id/tv_muted"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Muted color"
-        android:layout_below="@+id/tv_vibrant_light"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        />
-
-    <TextView
-        android:id="@+id/tv_muted_dark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Muted dark color"
-        android:layout_below="@+id/tv_muted"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        />
-
-    <TextView
-        android:id="@+id/tv_muted_light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Muted light color"
-        android:layout_below="@+id/tv_muted_dark"
-        android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
+        android:layout_height="match_parent"
         />
 
 </RelativeLayout>

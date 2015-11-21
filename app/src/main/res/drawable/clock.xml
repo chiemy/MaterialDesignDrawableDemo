@@ -1,0 +1,47 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="100dp"
+    android:height="100dp"
+    android:viewportHeight="24.0"
+    android:viewportWidth="24.0">
+    <!-- 表盘-->
+    <path
+        android:strokeWidth="2"
+        android:strokeColor="#000000"
+        android:pathData="M11.99,2
+        C6.47,2 2,6.48 2,12
+        s4.47,10 9.99,10
+        C17.52,22 22,17.52 22,12
+        S17.52,2 11.99,2z"
+        />
+
+    <!-- 时针-->
+    <group
+        android:name="hour"
+        android:pivotX="12"
+        android:pivotY="13"
+        >
+        <path
+            android:strokeLineCap="round"
+            android:strokeColor="#000000"
+            android:strokeWidth="2"
+            android:pathData="M12,8 v5"
+            />
+    </group>
+
+    <!-- 分针 -->
+    <group
+        android:name="minute"
+        android:rotation="135"
+        android:pivotX="12"
+        android:pivotY="13"
+        >
+        <path
+            android:strokeLineCap="round"
+            android:strokeColor="#000000"
+            android:strokeWidth="2"
+            android:pathData="M12,7 v6"
+            />
+    </group>
+
+
+</vector>

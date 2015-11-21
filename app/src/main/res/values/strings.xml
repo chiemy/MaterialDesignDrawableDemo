@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MaterialDesignDrawable</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_vector_drawable">VectorDrawableActivity</string>
+    <string name="title_activity_palette">PaletteActivity</string>
+    <string name="title_activity_tint_drawable">TintDrawableActivity</string>
 </resources>
