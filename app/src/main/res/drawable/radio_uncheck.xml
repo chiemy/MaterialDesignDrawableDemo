@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportHeight="32"
+    android:viewportWidth="32">
+    <group
+        android:translateX="16"
+        android:translateY="16">
+        <group android:name="ring_outer">
+            <path
+                android:name="ring_outer_path"
+                android:pathData="M 0,0 m -9,0 a 9,9 0 1,0 18,0 a 9,9 0 1,0 -18,0"
+                android:strokeColor="@android:color/white"
+                android:strokeWidth="2"/>
+        </group>
+        <group
+            android:name="dot_group"
+            android:scaleX="1"
+            android:scaleY="1">
+            <path
+                android:name="dot_path"
+                android:fillColor="@android:color/black"
+                android:pathData="M 0,0 m -5,0 a 5,5 0 1,0 10,0 a 5,5 0 1,0 -10,0"/>
+        </group>
+    </group>
+</vector>

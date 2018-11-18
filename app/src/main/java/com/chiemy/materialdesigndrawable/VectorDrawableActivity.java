@@ -28,6 +28,19 @@ public class VectorDrawableActivity extends AppCompatActivity implements View.On
 
         TextView vectorAnimIv1 = (TextView) findViewById(R.id.tv_vector_anim1);
         vectorAnimIv1.setOnClickListener(this);
+
+
+        final ImageView vectorAnimIv2 = findViewById(R.id.iv_anim);
+        vectorAnimIv2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Drawable drawable = vectorAnimIv2.getDrawable();
+                if (drawable instanceof Animatable){
+                    ((Animatable)drawable).start();
+                }
+            }
+        });
+
     }
 
     private void startAnim(ImageView vectorIv){

@@ -59,4 +59,11 @@
         android:layout_below="@+id/iv_vector_anim"
         />
 
+    <ImageView
+        android:id="@+id/iv_anim"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/avd_anim"
+        />
+
 </RelativeLayout>
